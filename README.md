@@ -1,5 +1,8 @@
 # PsqlHunter
+
+# Screenshot
 ![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/491e7fb5-69df-4a07-a383-7f77f19e64f5)
+![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/174b650f-20cd-4c44-81b2-109ab9dc788c)
 
 
 # Installation
