@@ -1,9 +1,7 @@
 # PsqlHunter
 
 # Screenshots
-![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/491e7fb5-69df-4a07-a383-7f77f19e64f5)
------
-![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/174b650f-20cd-4c44-81b2-109ab9dc788c)
+![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/c447da84-afa3-4381-bdb4-390360566806)
 
 
 # Installation
@@ -30,4 +28,4 @@ options:
 ```
 
 # To-Do
-- [ ] Reduce possible false positive.
+- [ ] Reduce possible false positive
