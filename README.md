@@ -1,5 +1,3 @@
-# PsqlHunter
-
 # Goal
 Aim to make sqli injection detection on pcap quicker for forensics analyst.
 
