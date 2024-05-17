@@ -47,9 +47,7 @@ def extract_sql(pcap):
             url = unquote(packet.http.request_uri)
             if sql_pattern.search(url):
                 timestamp = packet.sniff_time.strftime("%Y-%m-%d %H:%M:%S")
-                # Truncate the URL for better display in the table
-                truncated_url = (url[:80] + '...') if len(url) > 80 else url
-                results.append({"Packet": str(packet.number), "Timestamp": timestamp, "URL": truncated_url})
+                results.append({"Packet": str(packet.number), "Timestamp": timestamp, "URL": url})
 
     return results
 
@@ -74,7 +72,7 @@ def main():
         for pcap_file, results in results_dict.items():
             if args.csv:
                 csv_file = os.path.join(args.output, f"{os.path.splitext(os.path.basename(pcap_file))[0]}.csv")
-                with open(csv_file, 'w', newline='') as csvfile:
+                with open(csv_file, 'w', newline='', encoding="utf-8") as csvfile:
                     fieldnames = ["Packet", "Timestamp", "URL"]
                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                     writer.writeheader()
@@ -83,12 +81,13 @@ def main():
 
             if args.json:
                 json_file = os.path.join(args.output, f"{os.path.splitext(os.path.basename(pcap_file))[0]}.json")
-                with open(json_file, 'w') as jsonfile:
+                with open(json_file, 'w', encoding="utf-8") as jsonfile:
                     json.dump(results, jsonfile, indent=4)
                 print(f"[+] Results exported to JSON: {json_file}")
 
             if not args.csv and not args.json:
-                print(tabulate(results, headers=["Packet", "Timestamp", "URL"], tablefmt="grid"))
+                data = [[d["Packet"], d["Timestamp"], d["URL"]] for d in results]
+                print(tabulate(data, headers=["Packet", "Timestamp", "URL"], tablefmt="grid", maxcolwidths=[None, None, 80]))
 
 if __name__ == "__main__":
     main()
