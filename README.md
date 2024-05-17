@@ -2,7 +2,7 @@
 Aim to make sqli injection detection on pcap quicker for forensics analyst.
 
 # Screenshot
-![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/c447da84-afa3-4381-bdb4-390360566806)
+![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/feb9e3fe-dad1-4d23-af19-e74285fbae1e)
 
 # Requirement
 * Tshark
