@@ -1,5 +1,5 @@
-# Goal
-Aim to make sqli injection detection on pcap quicker for forensics analyst.
+# Description
+Make sqli injection detection on pcap quicker for forensics analyst.
 
 # Screenshot
 ![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/feb9e3fe-dad1-4d23-af19-e74285fbae1e)
@@ -12,6 +12,13 @@ Aim to make sqli injection detection on pcap quicker for forensics analyst.
 git clone https://github.com/MikeHorn-git/PsqlHunter.git
 cd PsqlHunter/
 pip install -r requirements.txt
+```
+
+# Nix
+```bash
+nix-build
+nix-shell
+./result/bin/PsqlHunter
 ```
 
 # Usage
