@@ -1,20 +1,22 @@
 # Description
 Make sqli injection detection on pcap quicker for forensics analyst.
+Detect sql requests in a pcap and render in a more friendly output.
 
 # Screenshot
 ![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/feb9e3fe-dad1-4d23-af19-e74285fbae1e)
 
 # Requirement
-* Tshark
+* [Tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
 
 # Installation
+## Classic
 ```bash
 git clone https://github.com/MikeHorn-git/PsqlHunter.git
 cd PsqlHunter/
 pip install -r requirements.txt
 ```
 
-# Nix
+## Nix
 ```bash
 nix-build
 nix-shell
