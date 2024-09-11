@@ -9,18 +9,10 @@ Detect sql requests in a pcap and render in a more friendly output.
 * [Tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
 
 # Installation
-## Classic
 ```bash
 git clone https://github.com/MikeHorn-git/PsqlHunter.git
 cd PsqlHunter/
 pip install -r requirements.txt
-```
-
-## Nix
-```bash
-nix-build
-nix-shell
-./result/bin/PsqlHunter
 ```
 
 # Usage
