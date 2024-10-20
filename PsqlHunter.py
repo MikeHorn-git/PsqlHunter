@@ -8,11 +8,12 @@ import argparse
 import csv
 import json
 import os
-import re
-from urllib.parse import unquote
 import pyshark
+import re
 from tabulate import tabulate
 from tqdm import tqdm
+from urllib.parse import unquote
+
 
 def process_pcap(pcap):
     """
@@ -28,6 +29,7 @@ def process_pcap(pcap):
         return results_dict
     print("[-] Invalid input")
     return None
+
 
 def extract_sql(pcap):
     """
@@ -50,6 +52,7 @@ def extract_sql(pcap):
                 results.append({"Packet": str(packet.number), "Timestamp": timestamp, "URL": url})
 
     return results
+
 
 def main():
     """
@@ -86,8 +89,12 @@ def main():
                 print(f"[+] Results exported to JSON: {json_file}")
 
             if not args.csv and not args.json:
-                data = [[d["Packet"], d["Timestamp"], d["URL"]] for d in results]
-                print(tabulate(data, headers=["Packet", "Timestamp", "URL"], tablefmt="grid", maxcolwidths=[None, None, 80]))
+                if results:  # Add this check to ensure results is not empty
+                    data = [[d["Packet"], d["Timestamp"], d["URL"]] for d in results]
+                    print(tabulate(data, headers=["Packet", "Timestamp", "URL"], tablefmt="grid", maxcolwidths=[None, None, 80]))
+                else:
+                    print(f"[-] No SQL commands detected in {pcap_file}")
+
 
 if __name__ == "__main__":
     main()
