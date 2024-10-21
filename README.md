@@ -18,7 +18,6 @@ git clone https://github.com/MikeHorn-git/PsqlHunter.git
 cd PsqlHunter/
 python3 -m venv .venv
 source .venv/bin/activate
-python3 PsqlHunter.py
 pip install -r requirements.txt
 ```
 
