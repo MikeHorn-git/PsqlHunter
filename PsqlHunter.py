@@ -39,10 +39,6 @@ def extract_sql(pcap):
     """
     cap = pyshark.FileCapture(pcap)
 
-    # sql_pattern = re.compile(
-        # r"\b(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|GRANT|REVOKE|EXEC|"
-        # r"LOAD_FILE|OUTFILE|UNION)\b|\b(AND|OR)\b\s*[\s=!<>]|--|\b(SLEEP|WAITFOR|BENCHMARK)\b\(\s*",
-    # )
     sql_pattern = re.compile(
         r"\b(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|GRANT|REVOKE|EXEC|OUTFILE|LOAD_FILE|UNION)\b"
         r"| \b(AND|OR)\b\s*[\s=!<>]"
