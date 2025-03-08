@@ -5,7 +5,7 @@ Detect sql requests in a pcap and render in a more friendly output.
 
 # Screenshot
 
-![image](https://github.com/MikeHorn-git/PsqlHunter/.assets/screen.png)
+![image](./.assets/screen.png)
 
 # Requirement
 
