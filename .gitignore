@@ -1,2 +1,7 @@
 # Virtualenv
 .venv
+
+# Pcaps
+*.cap
+*.pcap
+*.pcapng

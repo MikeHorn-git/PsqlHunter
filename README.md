@@ -5,11 +5,17 @@ Detect sql requests in a pcap and render in a more friendly output.
 
 # Screenshot
 
-![image](https://github.com/MikeHorn-git/PsqlHunter/assets/123373126/feb9e3fe-dad1-4d23-af19-e74285fbae1e)
+![image](https://github.com/MikeHorn-git/PsqlHunter/.assets/screen.png)
 
 # Requirement
 
 * [Tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
+
+## Arch
+
+```bash
+sudo pacman -S wireshark-cli
+```
 
 # Installation
 
@@ -18,6 +24,7 @@ git clone https://github.com/MikeHorn-git/PsqlHunter.git
 cd PsqlHunter/
 python3 -m venv .venv
 source .venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -37,7 +44,3 @@ options:
   --json           Export results to JSON
   --output OUTPUT  Path to the output folder
 ```
-
-# To-Do
-
-- [ ] Reduce possible false positives

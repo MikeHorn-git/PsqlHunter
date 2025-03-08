@@ -24,7 +24,7 @@ def process_pcap(pcap):
     if os.path.isdir(pcap):
         results_dict = {}
         for filename in os.listdir(pcap):
-            if filename.endswith(".pcap") or filename.endswith(".pcapng"):
+            if filename.endswith(".pcap") or filename.endswith(".pcapng") or filename.endswith(".cap"):
                 results_dict.update(
                     {filename: extract_sql(os.path.join(pcap, filename))}
                 )
@@ -39,9 +39,16 @@ def extract_sql(pcap):
     """
     cap = pyshark.FileCapture(pcap)
 
+    # sql_pattern = re.compile(
+        # r"\b(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|GRANT|REVOKE|EXEC|"
+        # r"LOAD_FILE|OUTFILE|UNION)\b|\b(AND|OR)\b\s*[\s=!<>]|--|\b(SLEEP|WAITFOR|BENCHMARK)\b\(\s*",
+    # )
     sql_pattern = re.compile(
-        r"\b(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|GRANT|REVOKE|EXEC|"
-        r"LOAD_FILE|OUTFILE|UNION)\b|\b(AND|OR)\b\s*[\s=!<>]|--|\b(SLEEP|WAITFOR|BENCHMARK)\b\(\s*",
+        r"\b(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|TRUNCATE|GRANT|REVOKE|EXEC|OUTFILE|LOAD_FILE|UNION)\b"
+        r"| \b(AND|OR)\b\s*[\s=!<>]"
+        r"| -- "  # SQL comment injection
+        r"| \b(SLEEP|WAITFOR|BENCHMARK)\b\s*\("
+        r"| \b(CHAR|CONCAT|CAST|CONVERT)\b\s*\(",
     )
 
     results = []
