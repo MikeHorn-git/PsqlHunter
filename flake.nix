@@ -1,25 +1,42 @@
 {
   description = "Hunt sql commands in pcap";
 
-  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/"; };
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+  };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      systems,
+      treefmt-nix,
+    }:
+
     let
       pkgs = import nixpkgs { system = "x86_64-linux"; };
+
+      # Small tool to iterate over each systems
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+      # Eval the treefmt modules from ./treefmt.nix
+      treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
 
       devShells = pkgs.mkShell {
         buildInputs = [
           pkgs.python312
-          pkgs.python312Packages.flake8
           pkgs.python312Packages.pyshark
           pkgs.python312Packages.tabulate
           pkgs.python312Packages.tqdm
           pkgs.tshark
         ];
-
-        shellHook = ''
-          flake8 PsqlHunter.py
-        '';
       };
-    in { devShells.x86_64-linux.default = devShells; };
+    in
+    {
+      devShells.x86_64-linux.default = devShells;
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+      checks = eachSystem (pkgs: {
+        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      });
+    };
 }

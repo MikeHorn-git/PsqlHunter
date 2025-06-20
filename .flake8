@@ -1,9 +1,0 @@
-[flake8]
-extend-ignore = E501
-exclude =
-    .assets,
-    .git,
-    .gitignore,
-    LICENSE,
-    README.md,
-    requirements.txt
