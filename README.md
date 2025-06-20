@@ -9,7 +9,7 @@ Detect sql requests in a pcap and render in a more friendly output.
 
 ## Requirement
 
-* [Tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
+- [Tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
 
 ### Arch
 

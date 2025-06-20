@@ -24,7 +24,11 @@ def process_pcap(pcap):
     if os.path.isdir(pcap):
         results_dict = {}
         for filename in os.listdir(pcap):
-            if filename.endswith(".pcap") or filename.endswith(".pcapng") or filename.endswith(".cap"):
+            if (
+                filename.endswith(".pcap")
+                or filename.endswith(".pcapng")
+                or filename.endswith(".cap")
+            ):
                 results_dict.update(
                     {filename: extract_sql(os.path.join(pcap, filename))}
                 )
